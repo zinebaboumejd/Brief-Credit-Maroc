@@ -1,4 +1,4 @@
-"# Brief-Credit-Maroc" 
+# Brief-Credit-Maroc
 npm
 ```bash
 npm install

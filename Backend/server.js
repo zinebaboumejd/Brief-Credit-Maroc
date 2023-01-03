@@ -13,10 +13,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
-// app.use("/Api/Auth",require('./auth/routes/authRoute'));
-// app.use("/Api/Produits",require('../Backend/Produits/router/produitrouter'));
-// app.use("/Api/Image",require('./ImageUpload/router/imageRouter'));
+// Routes
+app.use("/auth", require("./bank/Auth/routes/authRoute"));
 
 app.use(errorHandler)
 app.listen(port, () => console.log(`Server started on port ${port}`));
