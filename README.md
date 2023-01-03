@@ -20,3 +20,28 @@ npm start
  - [Tailwind](https://tailwindcss.com/)
 
 
+## Référence API
+
+#### register 
+
+```http
+  POST auth/register
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `nom` | `string` | **Required**. 
+| `prenom` | `string` | **Required**. 
+| `email` | `string` | **Required**. 
+| `password` | `string` | **Required**. 
+
+```http
+  POST auth/login
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `email` | `string` | **Required**. 
+| `password` | `string` | **Required**. 
+
+
