@@ -1,6 +1,6 @@
 const jwt=require('jsonwebtoken');
 const asyncHandler=require('express-async-handler');
-const User=require('.././bank/Auth/models/authModel');
+const User=require('.././banck/Auth/models/authModel');
 
 const protect=asyncHandler(async(req,res,next)=>{
     let token;
@@ -22,16 +22,22 @@ const protect=asyncHandler(async(req,res,next)=>{
     }
 }
 );
-
-const role=(...roles)=>{
-    return (req,res,next)=>{
-        if(!roles.includes(req.user.role)){
-            res.status(401);
-            throw new Error(`User role ${req.user.role} is not authorized to access this route`);
-        }
+const role = (role) => (req, res, next) => {
+    if (req.user && req.user.role === role) {
         next();
+    } else {
+        res.status(401);
+        throw new Error("Not authorized as an admin");
     }
-    
+};
+// middleware pour les comptes actifs et non activ pour action de transaction 
+const active = (active) => (req, res, next) => {
+    if (req.user && req.user.status === "active"){
+        next();
+    } else {
+        res.status(401);
+        throw new Error("Not authorized,account not active");
+    }
+};
 
-}
-module.exports={protect,role};
+module.exports={protect,role,active};

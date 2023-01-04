@@ -19,6 +19,22 @@ const UserSchema = mongoose.Schema(
       type: String,
       required: [true, "S'il vous plaît entrez votre le mot de passe"],
     },
+    solde:{
+      type:Number,
+      required:true,
+      default:1000
+  },
+  status:{
+      type:String,
+      required:true,
+      default:"desactiver"
+      // enum:['active,non active']
+  },
+  datecreation:{
+      type:Date,
+      required:true,
+      default:Date.now,
+  },
     role: {
       type: String,
       enum: ["admin", "client"],

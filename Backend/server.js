@@ -14,8 +14,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
-app.use("/auth", require("./bank/Auth/routes/authRoute"));
-app.use("/admin", require("./bank/Admin/Routes/adminRouter"));
+app.use("/auth", require("./banck/Auth/routes/authRoute"));
+app.use("/admin", require("./banck/Admin/Routes/adminRouter"));
+app.use("/client",require("./banck/Clients/Routes/clientRoute"))
 app.use(errorHandler)
 app.listen(port, () => console.log(`Server started on port ${port}`));
 
