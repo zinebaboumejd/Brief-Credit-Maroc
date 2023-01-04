@@ -37,7 +37,7 @@ const getTransactionById = asyncHandler(async (req, res) => {
 const createTransaction = asyncHandler(async (req, res) => {
   const { montant, receveur, type } = req.body;
   // tester si le type est retrait
-  if (type === "retrait") {
+  if (type === "envoi") {
     // tester si le montant est inferieur au solde
     const user = await User.findById(req.user._id);
             if (user.solde < montant) {
@@ -66,17 +66,37 @@ const createTransaction = asyncHandler(async (req, res) => {
             }
   }
   // sinon on fait la transaction
-  else {
+  else if (type === "retrait") {
     const transaction = new Transaction({
       montant,
-      receveur,
       type,
       user: req.user._id,
     });
+    // update solde
+    const user = await User.findById(req.user._id);
+    user.solde -= Number(montant);
+    await user.save();
     const createdTransaction = await transaction.save();
     res.status(201).json(createdTransaction);
   }
+  // sinon on fait la transaction
+  else if (type === "depot") {
+    const transaction = new Transaction({
+      montant,
+      type,
+      user: req.user._id,
+    });
+    // update solde
+    const user = await User.findById(req.user._id);
+    user.solde +=Number(montant);
+    await user.save();
+
+    const createdTransaction = await transaction.save();
+    res.status(201).json(createdTransaction);
+  }
+
 });
+
 module.exports = {
   getTransactions,
   getTransactionById,

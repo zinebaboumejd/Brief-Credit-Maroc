@@ -13,12 +13,12 @@ const Transactionschema=new Schema({
     // },
     receveur:{
         type:String,
-        required:true
+       
     },
     type:{
         type:String,
         required:true,
-        enum:["envoi","retrait"]
+        enum:["envoi","retrait","depot"]
     },
     user:{
         type:Schema.Types.ObjectId,
