@@ -60,7 +60,7 @@ const login = asyncHandler(async (req, res) => {
       nom: user.nom,
       prenom: user.prenom,
       email: user.email,
-      isAdmin: user.isAdmin,
+      role: user.role,
 
       token: generateToken(user._id),
     });

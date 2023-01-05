@@ -5,8 +5,8 @@ const {GetClient,
     desactivercomptclient
 }=require("../controller/adminController")
 const {protect,role}=require("../../../middlewares/authMiddlewre")
-
-router.route("/getclient").get(protect,role("admin"),GetClient);
+// protect,role("admin"),
+router.route("/getclient").get(GetClient);
 router.route("/acceptecomptclient/:id").put(protect,role("admin"),acceptecomptclient);
 router.route("/desactivercomptclient/:id").put(protect,role("admin"),desactivercomptclient);
 
