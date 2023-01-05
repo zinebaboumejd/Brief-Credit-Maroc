@@ -4,6 +4,19 @@ const asyncHandler = require("express-async-handler");
 const errorHandler = require("../../../middlewares/errorMiddleware");
 const Transaction = require("../Models/transactionModel");
 const User = require("../../Auth/models/authModel");
+// get client by id
+// @desc    Fetch single client
+// @route   GET /api/clients/:id
+// @access  Private/Admin
+const getClientById = asyncHandler(async (req, res) => {
+  const client = await User.findById(req.params.id);
+  if (client) {
+    res.json(client);
+  } else {
+    res.status(404);
+    throw new Error("Client not found");
+  }
+});
 
 // get all transactions
 // @desc    Fetch all transactions
@@ -101,4 +114,5 @@ module.exports = {
   getTransactions,
   getTransactionById,
   createTransaction,
+  getClientById
 };

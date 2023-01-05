@@ -10,7 +10,7 @@ const [nom,setNom]=useState('');
 const [prenom,setPrenom]=useState('');
 const [email,setEmail]=useState('');
 const [password,setPassword]=useState('');
-const Navigate=useNavigate();
+const navigate = useNavigate();
 
 async function register(){
 
@@ -27,77 +27,92 @@ headers:{
 body:JSON.stringify(item)
 });
 result=await result.json();
-console.log(result)
-localStorage.setItem("user-info",JSON.stringify(result))
-Navigate("/login")
+console.log(result);
+
+navigate("/login")
+
 }
 
   return (
     <div >register
-    <section className='heading mx-auto w-full max-w-[550px]'>
-       <h1 className="mt-3 text-[3.5rem] font-bold leading-[4rem] tracking-tight text-black">
-          Register
-       </h1>
-       <p className="mt-3 text-lg leading-relaxed text-slate-400">Please create an account</p>
-     </section>
-
-    <section className='form mx-auto w-full max-w-[550px] '>
-      <form >
-      <div className='form-group'>
-          <input
-            type='text'
-            className='form-control mb-3'
-            id='nom'
-            name='nom'
-            value={nom}
-            placeholder='Enter your NOM'
-            // onchange permet de changer la valeur de l'input
-           onChange={(e) => setNom(e.target.value)}
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='text'
-            className='form-control mb-3'
-            id='prenom'
-            name='prenom'
-            value={prenom}
-            placeholder='Enter your PRENOM'
-            onChange={(e) => setPrenom(e.target.value)}
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='email'
-            className='form-control mb-3'
-            id='email'
-            name='email'
-            value={email}
-            placeholder='Enter your email'
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <input 
-            type='password'
-            className='form-control mb-3'
-            id='password'
-            name='password'
-            value={password}
-            placeholder='Enter your password'
-            onChange={(e) => setPassword(e.target.value)}
+      <div
+        class="flex h-screen w-full items-center justify-center bg-gray-900 bg-cover bg-no-repeat"
+        // style={{backgroundImage: "url('https://cdn.pixabay.com/photo/2022/12/30/05/35/sunset-7686268_960_720.jpg')"}}
+      >
+        <div class="rounded-xl bg-gray-100 bg-opacity-50 px-16 py-10 shadow-lg backdrop-blur-md max-sm:px-8">
+          <div class="text-white">
+            <div class="mb-8 flex flex-col items-center">
+              <img
+                src="https://www.creditdumaroc.ma/sites/all/themes/custom/cdm_rebrand/assets/images/icons/logo_cdm.svg"
+                width="150"
+                alt=""
+                srcset=""
+              />
+              <h1 class="mb-2 text-2xl">bank Crédit du Maroc</h1>
+              <span class="text-gray-300">Entrez les détails de connexion</span>
+            </div>
+            <form
+              onSubmit={register}
+            >
             
-            />
+            <div class="mb-4 text-lg">
+                <input
+                  class="rounded-3xl border-none bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
+                  type="text"
+                  name="nom"
+                  placeholder="Nom"
+                  value={nom}
+                  onChange={(e) => setNom(e.target.value)}
+                />
+              </div>
+  
+              <div class="mb-4 text-lg">
+                <input
+                  class="rounded-3xl border-none bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
+                  type="text"
+                  name="prenom"
+                  placeholder="Prenom"
+                  value={prenom}
+                  onChange={(e) => setPrenom(e.target.value)}
+                />
+              </div>
+
+              <div class="mb-4 text-lg">
+                <input
+                  class="rounded-3xl border-none bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
+                  type="email"
+                  name="email"
+                  placeholder="nom@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+             
+
+              <div class="mb-4 text-lg">
+                <input
+                  class="rounded-3xl border-none bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
+                  type="Password"
+                  name="password"
+                  placeholder="*********"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div class="mt-8 flex justify-center text-lg text-black">
+                <button
+                  type="submit"
+                
+                  class="rounded-3xl bg-yellow-400 bg-opacity-50 px-10 py-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-yellow-600"
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-       
-       
-        <div className='form-group'>
-          <button type='submit' onClick={register} 
-           className='btn btn-block border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline"'>
-            Submit
-          </button>
-        </div>
-      </form>
-    </section>
+      </div>
+    
     </div>
   )
 }

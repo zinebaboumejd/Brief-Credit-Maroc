@@ -1,10 +1,32 @@
-import React from 'react'
+import React, {
+  useState,
+  useEffect
+}from 'react'
 import { Link } from 'react-router-dom'
 
 
-
 function SideBar() {
- 
+  const [data, setData] = useState([]);
+  const admin_id=localStorage.getItem('admin_id');
+  function getClientById( id) {
+  fetch(`http://localhost:6060/client/getClientById/${admin_id}`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+  }
+  })
+  .then(res => res.json())
+  .then(data => {
+      console.log(data)
+      setData(data)
+  })
+  .catch(err => console.log(err))
+  }
+  useEffect(() => {
+  getClientById(admin_id)
+  }, [])
+  
 
   return (
     <div>
@@ -51,7 +73,7 @@ function SideBar() {
               <h2
                 class="font-medium text-xs md:text-sm text-center text-teal-500"
               >
-                Eduard Pantazi
+                admin admin
               </h2>
               <p class="text-xs text-gray-500 text-center">Administrator</p>
             </div>
