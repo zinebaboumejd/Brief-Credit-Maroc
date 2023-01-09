@@ -1,15 +1,30 @@
 import React, { useState } from 'react'
 
-
 const Navbar = () => {
-    let Links =[
-        {name:"HOME",link:"/"},
-        {name:"Dashboard",link:"/dashboard"},
-        {name:"Register",link:"/register"},
-      {name:"Connecter",link:"/login"},
-      // {name:"Deconnecter",link:"/logout"},
-     
+  function logout(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('role')
+    localStorage.removeItem('id')
+    window.location.href="/"
+  }
+  // tester si l'utilisateur est connecté ou non pour afficher les connecter et deconnecter 
+  const role =localStorage.getItem('role')
+  if(role==="admin" || role==="client"){
+    var Links =[
+      {name:"HOME",link:"/"},
+      {name:"Dashboard",link:"/dashboard"},
+      {name:"Profile",link:"/profileclient"},
+      {name:"Logout",link:"#",onClick:logout},
     ];
+  }else{
+    var Links =[
+      {name:"HOME",link:"/"},
+      {name:"Dashboard",link:"/dashboard"},
+      {name:"Register",link:"/register"},
+      {name:"Login",link:"/login"},
+    ];
+  }
+  
    const [open,setOpen]=useState(false);
   return (
     <div className='shadow-md w-full fixed top-0 left-0'>

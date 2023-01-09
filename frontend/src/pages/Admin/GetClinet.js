@@ -2,7 +2,7 @@ import React ,{useEffect,
     useState
 }from 'react'
 import SideBar from '../../components/sidebar/SideBar'
-
+import moment from 'moment'
 function GetClinet() {
     const [data, setData] = useState([]);
     // fonction getclien
@@ -112,8 +112,9 @@ function GetClinet() {
                 {client.solde}
                 </td>
                 <td class="px-4 py-3 text-sm">
-                {client.dateCreation}
-                </td>
+            {/* afficher data  annee-mois-jour */}
+                {moment(client.dateCreation).format('YYYY-MM-DD hh:mm:ss ')}
+                            </td>
               <td class="px-4 py-3 text-xs">
                 {/* button et tester si status active afficher color veres sinon aficher color rouge */}
                 {client.status==="active" ? <button onClick={()=>desactiveStatus(client._id)} class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> {client.status} </button> : <button onClick={()=>activeStatus(client._id)} class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100"> {client.status} </button>}

@@ -10,7 +10,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Auth/Login";
 import Dashboard from "./pages/Admin/Dashboard";
 import GetClinet from "./pages/Admin/GetClinet"
-import Register from "./pages/Auth/Register"
+import Register from "./pages/Auth/Register";
+import ProfileClient from "./pages/Client/ProfileClient"
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/getclient" element={<GetClinet />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profileclient" element={<ProfileClient />} />
 
         </Routes>
       </Router>

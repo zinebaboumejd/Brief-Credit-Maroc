@@ -34,6 +34,7 @@ const UserSchema = mongoose.Schema(
       type:Date,
       required:true,
       default:Date.now,
+      // defalt : Date
   },
     role: {
       type: String,

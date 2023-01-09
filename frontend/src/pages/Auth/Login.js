@@ -14,7 +14,7 @@ function Login() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
+        "Accept": "application/json",
       },
       body: JSON.stringify(item),
     });
@@ -26,17 +26,22 @@ function Login() {
     // // tester si le client est admin ou pas
     if (result.role === "admin") {
       // supprimer storage
-
-      sessionStorage.setItem("admin_id", result._id);
-      localStorage.setItem("admin_id", result._id);
+      localStorage.removeItem("_id");
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      localStorage.setItem("_id", result._id);
       localStorage.setItem("token", result.token);
       localStorage.setItem("role", result.role);
       navigate("/dashboard");
-    } else {
-      localStorage.setItem("client", result._id);
+    } else if(result.role==="client"){
+      // supprimer storage
+      localStorage.removeItem("_id");
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      localStorage.setItem("_id", result._id);
       localStorage.setItem("token", result.token);
       localStorage.setItem("role", result.role);
-      navigate("/");
+      navigate("/profileclient");
     }
   };
 

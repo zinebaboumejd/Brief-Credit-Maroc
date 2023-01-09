@@ -7,7 +7,7 @@ const {createTransaction,
 }=require("../controllers/clientController")
 const {protect,role,active}=require("../../../middlewares/authMiddlewre")
 
-router.route("/getClientById/:id").get( getClientById);
+router.route("/getClientById/:id").get(getClientById);
 
 router.route("/createTransaction").post(
     protect,
