@@ -14,26 +14,10 @@ function ProfileClient() {
   const id=localStorage.getItem("_id")
   const token=localStorage.getItem("token")
   const role=localStorage.getItem("role")
-  console.log(id)
-  console.log(token)
-  console.log(role)
+
 
   const [data, setData] = useState([])
-  const[showtab, setShowtab]= useState(1);
-  const [dataform, setDataForm] = useState({
-    montant:"",
-    receveur:"",
-    type:"envoi"
-  })
-
-
-  function hendleChange(e){
-    const newdata={...dataform}
-    newdata[e.target.name]=e.target.value
-    setDataForm(newdata)
-    console.log(newdata)
-  }
-
+  const[showtab, setShowtab]= useState(0);
 
 
 
@@ -42,27 +26,7 @@ function ProfileClient() {
     // console.log(e)
       }
 
-  // craet function handleSubmit fetch
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const res = await axios.post(`http://localhost:6060/client/createTransaction`, dataform, {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      }
-    })
-    console.log(res.data)
-
-    if (res.data) {
-      toast.success("Depot effectué avec succès")
-      // navigate('/admin/dashboard')
-    } else {
-
-      toast.error("Erreur de depot")
-    }
-  }
-
+ 
 
   useEffect(() => {
       const getItem=async()=>{
@@ -81,19 +45,8 @@ function ProfileClient() {
     <>
 
 
-<main className="profile-page pt-96">
-  <section className="relative block h-500-px">
-    {/* <div className="absolute top-0 w-full h-full bg-center bg-cover" style="
-            background-image: url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80');
-          ">
-      <span id="blackOverlay" className="w-full h-full absolute opacity-50 bg-black"></span>
-    </div> */}
-    {/* <div className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px" style="transform: translateZ(0px)">
-      <svg className="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-        <polygon className="text-blueGray-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
-      </svg>
-    </div> */}
-  </section>
+<main className="profile-page pt-96 z-0">
+
   <section className="relative py-16 bg-blueGray-200">
     <div className="container mx-auto px-4">
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
@@ -105,8 +58,18 @@ function ProfileClient() {
               </div> */}
             </div>
   
-            <div className="w-full lg:w-4/12 px-4 lg:order-1">
-              <div className="flex justify-center py-4 lg:pt-4 pt-8">
+         
+          </div>
+          <div className="text-center mt-12">
+            <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+              {data.nom} {data.prenom}
+            </h3>
+            <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+              <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
+              {data.email}
+            </div>
+            <div className="mb-2 text-blueGray-600 mt-10">
+            <div className="flex justify-center py-4 lg:pt-4 pt-8">
                 <div className="mr-4 p-3 text-center">
                 <span className="text-sm text-blueGray-400">Solde</span>
                   <span className="text-base font-bold block uppercase tracking-wide text-blueGray-600">{data.solde}</span>
@@ -119,20 +82,7 @@ function ProfileClient() {
                 <span className="text-sm text-blueGray-400">Date Creation</span>
                   <span className="text-base font-bold block uppercase tracking-wide text-blueGray-600"> {moment(data.dateCreation).format('YYYY-MM-DD hh:mm:ss ')}</span>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="text-center mt-12">
-            <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-              {data.nom} {data.prenom}
-            </h3>
-            <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-              <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
-              {data.email}
-            </div>
-            <div className="mb-2 text-blueGray-600 mt-10">
-              <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>Solution Manager - Creative Tim Officer
-            </div>
+              </div>            </div>
             <div className="mb-2 text-blueGray-600">
               <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>University of Computer Science
             </div>
@@ -212,85 +162,21 @@ function ProfileClient() {
               <div className=
               {showtab===1? "flex flex-wrap justify-center lg:pl-52":"hidden"}>     
                 <div className="h-full rounded-xl shadow-cla-blue bg-gradient-to-r from-indigo-50 to-blue-50 overflow-hidden">
-                <div className="p-6">
-                  <h1 className="title-font text-lg font-medium text-gray-600 mb-3">Envoi</h1>
-                  {/* <p className="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p> */}
-                  <form 
-                  onSubmit={(e)=>handleSubmit(e)}  
-                  >
-                    <div className="py-4 px-8">
-
-                        <div className="mb-4">
-                            <label className="block text-grey-darker text-sm font-bold mb-2">Montant</label>
-                            <input className=" border rounded w-full py-2 px-3 text-grey-darker" 
-                            type="number"
-                            onChange={(e)=>hendleChange(e)}
-                            name="montant"
-                                value={dataform.montant}
-                                placeholder="Monton" />
-            
-                        </div>
-
-
-                        <div className="mb-4">
-                            <label className="block text-grey-darker text-sm font-bold mb-2">Numéro receveur </label>
-                            <input className=" border rounded w-full py-2 px-3 text-grey-darker" 
-                                 type="text"
-                                 onChange={(e)=>hendleChange(e)}
-                                 
-                                  name="receveur"
-                                value={dataform.receveur}
-                                placeholder="RIP ID" />
-                      
-                        </div>
-
-                        <div className="mb-4">
-                            <label className="block text-grey-darker text-sm font-bold mb-2">Type de Operation</label>
-                            <input className=" border rounded w-full py-2 px-3 text-grey-darker" 
-                               type="text"
-                                // onChange={(e)=>hendleChange(e)}
-                                name="type"
-                                // value="envoi" 
-                                defaultValue={dataform.type}
-
-                                placeholder="envoi" />                    
-                        </div>
-
-
-                            
-                        <div className="mb-4">
-                            <button
-                            type='submit'
-                                className="bg-gradient-to-r from-cyan-400 to-blue-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg ">
-                                Save
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-                </div>
+               
+                  <Envoi/>
+                
               </div>
               </div>
 
               <div className={showtab===2? "flex flex-wrap justify-center lg:pl-52":"hidden"}>
                  <div className="h-full rounded-xl shadow-cla-violate bg-gradient-to-r from-pink-50 to-red-50 overflow-hidden">
-                  <div className="p-6">
-                    <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY-1</h2>
-                    <h1 className="title-font text-lg font-medium text-gray-600 mb-3">Retrait</h1>
-                    <p className="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
-                   
-                  </div>
+                <Retrait/>
                 </div>
              </div>
               <div className={showtab===3? " flex flex-wrap justify-center lg:pl-52 ":"hidden"}>
             
                   <div className="h-full rounded-xl shadow-cla-pink bg-gradient-to-r from-fuchsia-50 to-pink-50 overflow-hidden">
-                  <div className="p-6">
-                    <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY-1</h2>
-                    <h1 className="title-font text-lg font-medium text-gray-600 mb-3">Dépôt</h1>
-                    <p className="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
-                   
-                  </div>
+                 <Depot/>
                   </div>
                   </div>
                   
