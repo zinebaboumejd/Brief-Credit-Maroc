@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import { toast } from 'react-toastify'
 
+import { toast } from 'react-toastify';
 
 
 function Envoi() {
@@ -39,7 +39,6 @@ function Envoi() {
     
         if (res.data) {
           toast.success("Depot effectué avec succès")
-          // navigate('/admin/dashboard')
         } else {
     
           toast.error("Erreur de depot")

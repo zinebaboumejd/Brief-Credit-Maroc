@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import { Toaster} from 'react-hot-toast';
 function Login() {
@@ -14,7 +14,7 @@ function Login() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify(item),
     });
@@ -32,8 +32,9 @@ function Login() {
       localStorage.setItem("_id", result._id);
       localStorage.setItem("token", result.token);
       localStorage.setItem("role", result.role);
-      navigate("/dashboard");
-    } else if(result.role==="client"){
+      // navigate("/dashboard");
+      window.location.href = "/dashboard";
+    } else if (result.role === "client") {
       // supprimer storage
       localStorage.removeItem("_id");
       localStorage.removeItem("token");
@@ -41,7 +42,8 @@ function Login() {
       localStorage.setItem("_id", result._id);
       localStorage.setItem("token", result.token);
       localStorage.setItem("role", result.role);
-      navigate("/profileclient");
+      // navigate("/profileclient");
+      window.location.href = "/profileclient";
     }
   };
 

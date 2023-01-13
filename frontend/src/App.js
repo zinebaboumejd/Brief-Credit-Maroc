@@ -12,6 +12,8 @@ import Dashboard from "./pages/Admin/Dashboard";
 import GetClinet from "./pages/Admin/GetClinet"
 import Register from "./pages/Auth/Register";
 import ProfileClient from "./pages/Client/ProfileClient"
+import Releve from "./pages/Client/Releve";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -27,11 +29,11 @@ function App() {
           <Route path="/getclient" element={<GetClinet />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profileclient" element={<ProfileClient />} />
-
+          <Route path="/releve" element={<Releve />} />
         </Routes>
       </Router>
 
-
+<ToastContainer/>
    
     </>
   );

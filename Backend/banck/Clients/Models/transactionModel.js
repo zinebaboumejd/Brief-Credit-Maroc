@@ -13,7 +13,6 @@ const Transactionschema=new Schema({
     // },
     receveur:{
         type:String,
-       
     },
     type:{
         type:String,

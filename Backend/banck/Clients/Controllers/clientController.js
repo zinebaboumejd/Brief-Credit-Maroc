@@ -37,11 +37,13 @@ const getTransactionById = asyncHandler(async (req, res) => {
   const transaction = await Transaction.findById(req.params.id);
   if (transaction) {
     res.json(transaction);
+   
   } else {
     res.status(404);
     throw new Error("Transaction not found");
   }
 });
+
 
 // create transaction
 // @desc    Create a transaction

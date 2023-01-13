@@ -5,10 +5,11 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import moment from 'moment'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Envoi from '../../components/Envoi'
 import Depot from '../../components/Depot'
 import Retrait from '../../components/Retrait'
+
 
 function ProfileClient() {
   const id=localStorage.getItem("_id")
@@ -84,7 +85,10 @@ function ProfileClient() {
                 </div>
               </div>            </div>
             <div className="mb-2 text-blueGray-600">
-              <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>University of Computer Science
+              <button className='bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150' 
+              type="button">
+                <Link to='/releve'>Releve</Link>
+               </button>
             </div>
           </div>
           <div className="mt-10 py-10 border-t border-blueGray-200 text-center">

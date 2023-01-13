@@ -13,9 +13,10 @@ const Navbar = () => {
    useEffect(() => {
     const role = localStorage.getItem('role')
     setRole(role)
-    console.log("role",role)
+    console.log(role)
   }, [])
 
+      // tester si l'utilisateur est connecté ou non pour afficher les connecter et deconnecter 
   // const role =localStorage.getItem('role')
   if(role==="admin"){
     var Links =[
@@ -34,8 +35,8 @@ const Navbar = () => {
       {name:"Login",link:"/login"},
     ];
   }
-
-
+  
+ 
 
    const [open,setOpen]=useState(false);
    
