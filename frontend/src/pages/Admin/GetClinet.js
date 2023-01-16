@@ -26,7 +26,7 @@ function GetClinet() {
     // foncion pour activer status si status==="desactive" et desactiver si status ==="active" 
     function activeStatus(id){
         const token = localStorage.getItem("token")
-        fetch(`http://localhost:6060/admin/acceptecomptclient/${id}`,{
+         fetch(`http://localhost:6060/admin/acceptecomptclient/${id}`,{
             method:"PUT",
             headers:{
                 "Content-Type":"application/json",
@@ -40,6 +40,7 @@ function GetClinet() {
             getClient()
         })
     }
+
 // desactiver status
 
     function desactiveStatus(id){
@@ -59,17 +60,15 @@ function GetClinet() {
         })
     }
 
-
-
     useEffect(() => {
         getClient()
     }, [])
 
   return (
     <div>
-        <SideBar/>
+        {/* <SideBar/> */}
         
-        <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
+        <div class=" pt-52 min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
 
 <div class="mt-4 mx-4">
     <div class="w-full overflow-hidden rounded-lg shadow-xs">

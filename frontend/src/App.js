@@ -16,6 +16,7 @@ import Releve from "./pages/Client/Releve";
 import { ToastContainer } from 'react-toastify';
 
 function App() {
+  const token=localStorage.getItem('token')
   return (
     <>
       <Navbar />
@@ -25,9 +26,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/getclient" element={<GetClinet />} />
+      {/* nested route admin  */}
+          <Route path="/admin" element={<Dashboard />}>
+            
+            <Route path="/admin/getclient" element={<GetClinet />} />
+          </Route> 
+
+          
           <Route path="/register" element={<Register />} />
+          
           <Route path="/profileclient" element={<ProfileClient />} />
           <Route path="/releve" element={<Releve />} />
         </Routes>
