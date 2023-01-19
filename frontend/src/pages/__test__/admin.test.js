@@ -1,15 +1,9 @@
+import { render, screen } from '@testing-library/react';
+import App from '../App';
 
-const testadmmin =require('../Admin/GetClinet.js')
-
-test('testadmin', () => {
-    expect(testadmmin).toBe('test')
+test('renders learn react link', () => {
+    render(<App />);
+    const linkElement = screen.getByText(/learn react/i);
+    expect(linkElement).toBeInTheDocument();
     }
-)
-
-// Path: frontend\src\pages\Admin\GetClinet.js
-
-export default function GetClinet() {
-    return 'test'
-}
-
-
+    );

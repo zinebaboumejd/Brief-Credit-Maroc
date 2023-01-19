@@ -11,6 +11,12 @@ npm init
 ```bash
 npm start
 ```
+Installez Docker pour votre système d'exploitation.
+Installez l'outil Docker Compose.
+Exécutez docker-compose
+```bash
+docker-compose up -d --build
+```
 
 ## Les outils et technologies utilisés :
  - [MongoDB](https://www.mongodb.com/home)
@@ -18,5 +24,6 @@ npm start
  - [Reactjs](https://reactjs.org/)
   - [Nodejs](https://nodejs.org/en/download/)
  - [Tailwind](https://tailwindcss.com/)
+ -[Docker](https://docs.docker.com/)
 
 

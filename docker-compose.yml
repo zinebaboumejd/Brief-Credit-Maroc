@@ -19,7 +19,7 @@ services:
     ports:
       - 6060:6060
     volumes:
-      - ./Backend:/app
+      - ./backend:/app
       - /app/node_modules
     depends_on:
       - mongo

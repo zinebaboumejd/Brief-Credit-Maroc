@@ -27,7 +27,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div class="mt-12 hidden lg:block"><img class="" src="https://www.toutaumaroc.com/emploi/wp-content/uploads/2016/10/credit-du-Maroc-Vraie-Finale.jpg" alt="" /></div>
+        <div class="mt-12 hidden lg:block"><img class="" src="https://www.creditdumaroc.ma/sites/default/files/e-conso-fr_0.jpg" alt="image" /></div>
       </div>
     </div>
   </div>
